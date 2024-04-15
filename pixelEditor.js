@@ -1,5 +1,7 @@
-function mySetPixel(x, y, pic, r, g, b, a) {
-    pic.loadPixels();
+function mySetPixel(x, y, pic, r, g, b, a, doLoad = true, doUpdate = true) {
+    if (doLoad) {
+        pic.loadPixels();
+    }
 
     pixelStartIndex = (x + pic.width * y) * 4;
 
@@ -8,20 +10,22 @@ function mySetPixel(x, y, pic, r, g, b, a) {
     pic.pixels[pixelStartIndex + 2] = b;
     pic.pixels[pixelStartIndex + 3] = a;
 
-    pic.updatePixels();
+    if (doUpdate) {
+        pic.updatePixels();
+    }
 }
 
-function myGetPixel(x, y, pic) {
-    pic.loadPixels();
+function myGetPixel(x, y, pic, doLoad = true) {
+    if (doLoad) {
+        pic.loadPixels();
+    }
 
     pixelStartIndex = (x + pic.width * y) * 4;
 
-    result = [
+    return [
         pic.pixels[pixelStartIndex],
         pic.pixels[pixelStartIndex + 1],
         pic.pixels[pixelStartIndex + 2],
         pic.pixels[pixelStartIndex + 3],
     ];
-
-    return result;
 }
