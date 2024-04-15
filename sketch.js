@@ -19,6 +19,17 @@ function mySetPixel(x, y, pic, r, g, b, a) {
   pic.updatePixels();
 }
 
-function myGetPixel() {
-  
+function myGetPixel(x, y, pic) {
+  pic.loadPixels();
+
+  pixelStartIndex = (x + pic.width * y) * 4;
+
+  result = [
+    pic.pixels[pixelStartIndex],
+    pic.pixels[pixelStartIndex + 1],
+    pic.pixels[pixelStartIndex + 2],
+    pic.pixels[pixelStartIndex + 3],
+  ];
+
+  return result;
 }
